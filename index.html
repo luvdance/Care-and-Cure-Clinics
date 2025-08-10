@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care and Cure Clinics</title>
+    <link rel="icon" href="images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="bootstrap-5.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="images/logo.png" alt="Logo" width="40" height="40" class="me-2">
+            Care & Cure Clinics
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link home-link" href="#">Home</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="#podcasts">Podcasts</a></li>
+                <li class="nav-item"><a class="nav-link" href="career.html">Career</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Departments
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="departments.html#cardiology">Cardiology</a></li>
+                        <li><a class="dropdown-item" href="departments.html#pediatrics">Pediatrics</a></li>
+                        <li><a class="dropdown-item" href="departments.html#neurology">Neurology</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item d-lg-none">
+                    <a class="nav-link emergency-btn text-white">Emergency</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="d-none d-lg-block">
+            <a class="btn emergency-btn ms-3">Emergency</a>
+        </div>
+    </div>
+</nav>
+
+<!--Hero section-->
+    <section id="hero" class="hero">
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active position-relative">
+                <img src="images/hero 2.png" class="d-block w-100 object-fit-cover hero-img" alt="First slide: Quality healthcare you can trust">
+                <div class="hero-overlay"></div>
+                <div class="hero-caption">
+                    <div class="hero-content">
+                        <h1>Welcome to Care and Cure Clinics</h1>
+                        <p class="hero-subtitle">Dedicated to Healing and Hope</p>
+                        <div class="hero-stats mt-4">
+                            <div class="stat-item">
+                                <h3 class="stat-number" data-count="25">0</h3>
+                                <p class="stat-label">Years of Service</p>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-heartbeat fa-2x"></i>
+                                <p class="stat-label">Committed to Care</p>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-ambulance fa-2x"></i>
+                                <p class="stat-label">24/7 Emergency Response</p>
+                            </div>
+                        </div>
+                        <a href="#appointment" class="btn btn-primary mt-4">Book an Appointment</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item position-relative">
+                <img src="images/hero 2.png" class="d-block w-100 object-fit-cover hero-img" alt="Second slide: Compassionate care">
+                <div class="hero-overlay"></div>
+                <div class="hero-caption">
+                    <div class="hero-content">
+                        <h1>Compassionate Care</h1>
+                        <p class="hero-subtitle">Putting Patients First</p>
+                        <div class="hero-stats mt-4">
+                            <div class="stat-item">
+                                <h3 class="stat-number" data-count="25">0</h3>
+                                <p class="stat-label">Years of Service</p>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-heartbeat fa-2x"></i>
+                                <p class="stat-label">Dedicated Professionals</p>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-ambulance fa-2x"></i>
+                                <p class="stat-label">24/7 Emergency Response</p>
+                            </div>
+                        </div>
+                        <a href="#services" class="btn btn-primary mt-4">Explore Our Services</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item position-relative">
+                <img src="images/hero 3.png" class="d-block w-100 object-fit-cover hero-img" alt="Third slide: Advanced medical services">
+                <div class="hero-overlay"></div>
+                <div class="hero-caption">
+                    <div class="hero-content">
+                        <h1>Advanced Medical Services</h1>
+                        <p class="hero-subtitle">Modern Solutions for Health Challenges</p>
+                        <div class="hero-stats mt-4">
+                            <div class="stat-item">
+                                <h3 class="stat-number" data-count="25">0</h3>
+                                <p class="stat-label">Years of Service</p>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-heartbeat fa-2x"></i>
+                                <p class="stat-label">Care You Can Trust</p>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-ambulance fa-2x"></i>
+                                <p class="stat-label">24/7 Emergency Response</p>
+                            </div>
+                        </div>
+                        <a href="#contact" class="btn btn-primary mt-4">Contact Us Today</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="container-fluid py-5">
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="services-carousel-container position-relative mb-5">
+                <div id="services-scroller" class="scrolling-wrapper">
+                    <div class="card service-card shadow-sm">
+                        <img src="images/service 1.png" class="card-img-top" alt="Emergency care image">
+                        <div class="card-body">
+                            <h5 class="card-title">Emergency Care</h5>
+                            <p class="card-text">24/7 emergency services with trained personnel and state-of-the-art equipment.</p>
+                        </div>
+                    </div>
+                    <div class="card service-card shadow-sm">
+                        <img src="images/General-Outpatient-Clinic1.jpg" class="card-img-top" alt="Outpatient services image">
+                        <div class="card-body">
+                            <h5 class="card-title">Outpatient Services</h5>
+                            <p class="card-text">Reliable consultations, diagnostics, and follow-up care from experienced professionals.</p>
+                        </div>
+                    </div>
+                    <div class="card service-card shadow-sm">
+                        <img src="images/surgery.jpg" class="card-img-top" alt="Surgery image">
+                        <div class="card-body">
+                            <h5 class="card-title">Surgery</h5>
+                            <p class="card-text">Advanced surgical procedures performed by expert surgeons with modern tools.</p>
+                        </div>
+                    </div>
+                    <div class="card service-card shadow-sm">
+                        <img src="images/Obstetrics and Gynacology .jpg" class="card-img-top" alt="Maternity care image">
+                        <div class="card-body">
+                            <h5 class="card-title">Obstetrics and Gynacology</h5>
+                            <p class="card-text">Comprehensive care for expecting mothers and newborns in a supportive environment.</p>
+                        </div>
+                    </div>
+                    <div class="card service-card shadow-sm">
+                        <img src="images/radiology.jpg" class="card-img-top" alt="Radiology services image">
+                        <div class="card-body">
+                            <h5 class="card-title">Radiology</h5>
+                            <p class="card-text">High-tech imaging services, including X-rays, CT scans, and MRI, for accurate diagnosis.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="services-navigation">
+                    <button id="left-arrow" class="btn arrow-btn"><i class="fas fa-arrow-left"></i></button>
+                    <button id="right-arrow" class="btn arrow-btn"><i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="magazine-section my-5">
+                <div class="magazine-carousel-container position-relative">
+                    <div id="magazine-carousel" class="magazine-carousel">
+                        <div class="magazine-item d-flex align-items-center">
+                            <img src="images/Meningitis.jpg" alt="Magazine Cover" class="magazine-cover">
+                            <div class="magazine-body ms-4">
+                                <h4 class="magazine-title">The Importance of the Meningitis Vaccine</h4>
+                                <p class="magazine-excerpt">A comprehensive report on the latest medical findings and recommendations for meningitis prevention.</p>
+                                <a href="#" class="magazine-link">Goodread <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="magazine-item d-flex align-items-center">
+                            <img src="images/diabetes.jpg" alt="Magazine Cover" class="magazine-cover">
+                            <div class="magazine-body ms-4">
+                                <h4 class="magazine-title">Latest Developments in Diabetes Management</h4>
+                                <p class="magazine-excerpt">Learn about new treatments, technologies, and lifestyle changes to effectively manage diabetes.</p>
+                                <a href="#" class="magazine-link">Goodread <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="magazine-item d-flex align-items-center">
+                            <img src="images/heart health.jpg" alt="Magazine Cover" class="magazine-cover">
+                            <div class="magazine-body ms-4">
+                                <h4 class="magazine-title">Understanding Heart Health: A Modern Guide</h4>
+                                <p class="magazine-excerpt">Expert advice on maintaining cardiovascular health and recognizing early signs of heart disease.</p>
+                                <a href="#" class="magazine-link">Goodread <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="magazine-navigation text-center mt-4">
+                    <span class="cube-indicator active" data-slide="0"></span>
+                    <span class="cube-indicator" data-slide="1"></span>
+                    <span class="cube-indicator" data-slide="2"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 d-none d-lg-block">
+            <div class="health-tips-card card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-center"><i class="fas fa-chart-bar health-tips-icon"></i> Health Tips</h5>
+                    <div class="health-tips-wrapper" id="health-tips-list-desktop">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="health-tips-mobile-toggle d-lg-none">
+    <button id="toggle-tips-btn" class="btn btn-primary rounded-circle shadow-lg">
+        <i class="fas fa-lightbulb"></i>
+    </button>
+</div>
+
+<div id="health-tips-sidebar" class="health-tips-sidebar d-lg-none shadow-lg">
+    <div class="d-flex justify-content-between align-items-center p-3">
+        <h5 class="card-title mb-0"><i class="fas fa-chart-bar health-tips-icon"></i> Health Tips</h5>
+        <button id="close-tips-btn" class="btn btn-secondary btn-sm"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="p-3" id="health-tips-list-mobile">
+        </div>
+</div>
+
+    <section id="about" class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">About Us</h2>
+        <p class="lead text-center">Care and Cure Clinics is committed to excellence in patient care, offering comprehensive medical services across multiple departments with a focus on compassion, professionalism, and innovation.</p>
+
+        <div class="row align-items-center my-5">
+            <div class="col-md-4 text-center">
+                <img src="images/PHOTO-2025-07-09-11-02-55.jpg" class="img-fluid shadow-lg" alt="Dr. Ordu John">
+            </div>
+            <div class="col-md-8 mt-4 mt-md-0">
+                <h3 class="cmd-name">Dr. John Ordu</h3>
+                <p class="doctor-sub-info">Chief Medical Director, Care and Cure Clinics | <span>MBBS, Medical and Dental Council of Nigeria</span></p>
+                <p>Dr. Ordu John, a dedcated medical doctor with nearly a decade of clinical experience, is the founder and Medical Director of Care and Cure Clinics Ltd. His strategic purpose is to bridge the gap between healthcare delivery and data-driven innovation, using digital health technologies to improve patient outcomes and streamline healthcare operations. He has experience leading a private outpatient and emergency clinic, providing care for adult and pediatric populations.</p>
+                <p>During his career, he has managed outpatient and inpatient care, provided antenatal and gynecologic care, and assisted in numerous surgical procedures. He also has experience in community health outreach and mentoring junior medical staff. Dr. Ordu John's skills include clinical excellence, medical leadership, digital readiness, and emergency triage.</p>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-12">
+                <h3 class="text-center mb-4">Our Departments</h3>
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-heartbeat fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Emergency Care</h5>
+                                <p class="card-text">Dr. Ordu John</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-stethoscope fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">General Practice</h5>
+                                <p class="card-text">Dr. Ordu John</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-baby fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Maternal & Child Health</h5>
+                                <p class="card-text">Dr. Ordu John</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-x-ray fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Radiology</h5>
+                                <p class="card-text">Dr. Ordu John</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="container py-5">
+    <div class="row">
+        <div class="col-md-5 mb-4 mb-md-0">
+            <div class="contact-info text-center text-md-start">
+                <h3 class="mb-4">Get in Touch</h3>
+                
+                <p class="lead mb-4">
+                    <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                    #5 Ikwerre Road, Mile 1, Port Harcourt, Rivers State
+                </p>
+
+                <p class="lead mb-4">
+                    <i class="fas fa-envelope text-primary me-2"></i>
+                    <a href="mailto:contact@careandcureclinics.com" class="text-decoration-none text-dark">contact@careandcureclinics.com</a>
+                </p>
+                
+                <p class="lead mb-4">
+                    <i class="fas fa-phone-alt text-primary me-2"></i>
+                    <a href="tel:+2348034494096" class="text-decoration-none text-dark">(+234) 8034494096</a>
+                </p>
+
+                <div class="mt-5">
+                    <h3 class="mb-3">Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f fa-2x"></i></a>
+                        <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <h3 class="mb-4 text-center text-md-start">Send us a Message</h3>
+            <form>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="email">
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Your Message</label>
+                    <textarea class="form-control" id="message" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="text-center mb-4">Our Location</h3>
+            <div class="map-container rounded shadow">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.291771142279!2d7.01340157500585!3d4.82136699516641!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1069cd87c47f3b43%3A0x6b44a49c4e0b0200!2s5%20Ikwerre%20Rd%2C%20Rumuola%20500101%2C%20Port%20Harcourt%2C%20Rivers!5e0!3m2!1sen!2sng!4v1672901234567!5m2!1sen!2sng" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Podcasts Section -->
+    <section id="podcasts" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Our Podcasts & Live Sessions</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID1" title="YouTube video" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID2" title="YouTube video" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <footer id="main-footer" class="text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0 text-center text-md-start">
+                <div class="d-flex flex-column flex-md-row align-items-center mb-3">
+                    <img src="images/logo.png" alt="Care and Cure Clinics Logo" class="w-auto me-md-3" style="max-height: 50px;">
+                    <p class="mb-0 mt-3 mt-md-0">Committed to excellence in patient care, compassion, and innovation.</p>
+                </div>
+                <div class="social-links mt-4">
+                    <a href="#"><i class="fab fa-facebook-f fa-lg text-white me-3"></i></a>
+                    <a href="#"><i class="fab fa-twitter fa-lg text-white me-3"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in fa-lg text-white"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0 text-center text-md-start">
+                <h5 class="mb-3">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#hero" class="text-white text-decoration-none">Home</a></li>
+                    <li><a href="#about" class="text-white text-decoration-none">About Us</a></li>
+                    <li><a href="#services" class="text-white text-decoration-none">Our Services</a></li>
+                    <li><a href="#contact" class="text-white text-decoration-none">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0 text-center text-md-start">
+                <h5 class="mb-3">Departments</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white text-decoration-none">Emergency Care</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">General Practice</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Maternal & Child Health</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Radiology</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 text-center text-md-start">
+                <h5 class="mb-3">Contact Info</h5>
+                <p><i class="fas fa-map-marker-alt me-2"></i>93 Azikiwe Street, Mile 2 Diobu, Port Harcourt</p>
+                <p><i class="fas fa-phone-alt me-2"></i>+234 803 449 4096</p>
+                <p><i class="fas fa-envelope me-2"></i>info@careandcure.com</p>
+            </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="text-center">
+            <p class="mb-0">&copy; 2025 Care and Cure Clinics. All rights reserved.</p>
+            <p class="mt-2">
+                Developed by <a href="http://www.memorasmart.com" class="text-white text-decoration-none" target="_blank">Memora Smart Technologies</a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+    <script src="bootstrap-5.3.7-dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="script.js"></script>
+
+<div class="modal fade" id="emergencyModal" tabindex="-1" aria-labelledby="emergencyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <ul class="nav nav-pills" id="emergencyTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="numbers-tab" data-bs-toggle="pill" data-bs-target="#numbers" type="button" role="tab" aria-controls="numbers" aria-selected="true">
+                            <i class="fas fa-phone-volume me-2"></i>Emergency Numbers
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="route-tab" data-bs-toggle="pill" data-bs-target="#route" type="button" role="tab" aria-controls="route" aria-selected="false">
+                            <i class="fas fa-map-marked-alt me-2"></i>Get Best Route
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="first-aid-tab" data-bs-toggle="pill" data-bs-target="#first-aid" type="button" role="tab" aria-controls="first-aid" aria-selected="false">
+                            <i class="fas fa-medkit me-2"></i>First Aid
+                        </button>
+                    </li>
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="tab-content" id="emergencyTabContent">
+                    <div class="tab-pane fade show active" id="numbers" role="tabpanel" aria-labelledby="numbers-tab">
+                        <ul class="list-unstyled emergency-numbers">
+                            <li><i class="fas fa-ambulance"></i> Ambulance: <a href="tel:911">911</a></li>
+                            <li><i class="fas fa-fire-extinguisher"></i> Fire Service: <a href="tel:999">999</a></li>
+                            <li><i class="fas fa-shield-alt"></i> Police: <a href="tel:100">100</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade" id="route" role="tabpanel" aria-labelledby="route-tab">
+                        <div class="d-flex justify-content-between mb-3">
+                            <button id="getRouteBtn" class="btn btn-primary w-50 me-2">Get Route</button>
+                            <button id="clearRouteBtn" class="btn btn-secondary w-50">Clear Route</button>
+                        </div>
+                        <div id="routeResult" class="alert alert-info d-none mt-3" role="alert">
+                            <i class="fas fa-route"></i> Calculating best route...
+                        </div>
+                        <div id="routeMap" style="height: 300px; width: 100%; border-radius: 5px; margin-top: 10px;"></div>
+                    </div>
+
+                    <div class="tab-pane fade" id="first-aid" role="tabpanel" aria-labelledby="first-aid-tab">
+                        <div class="mb-3">
+                            <label for="incidentType" class="form-label">Report the Incident</label>
+                            <select class="form-select" id="incidentType">
+                                <option selected disabled>Select incident type</option>
+                                <option value="cut">Deep Cut / Bleeding</option>
+                                <option value="burn">Burn</option>
+                                <option value="fracture">Bone Fracture</option>
+                                <option value="choking">Choking</option>
+                                <option value="fainting">Fainting</option>
+                            </select>
+                        </div>
+                        <div id="firstAidResult" class="alert alert-warning d-none" role="alert">
+                            <i class="fas fa-info-circle"></i> Please select an incident type.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+</body>
+
+</html>
