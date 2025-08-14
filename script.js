@@ -188,20 +188,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         // It will load the map directly in the iframe.
                         const mapSrc = `https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=${userLocation}&destination=${encodeURIComponent(hospitalDestination)}&mode=driving`;
                         
-                        // The Embed API doesn't provide travel time, so we will display a
-                        // simulated time while the map loads. The user will see the actual
-                        // live time on the map itself once it loads.
-                        setTimeout(() => {
-                            const travelTime = Math.floor(Math.random() * 20) + 5;
-                            routeResultDiv.innerHTML = `<i class="fas fa-car-side"></i> Estimated travel time: <strong>${travelTime} minutes</strong>`;
-                            routeResultDiv.classList.add('alert-success');
-                            routeResultDiv.classList.remove('alert-info');
+                        // Now, we will simply display a message to the user and load the map.
+                        // The user will find the actual time and distance on the map itself.
+                        routeResultDiv.innerHTML = `<i class="fas fa-car-side"></i> Your route and estimated travel time are shown on the map below.`;
+                        routeResultDiv.classList.add('alert-success');
+                        routeResultDiv.classList.remove('alert-info');
 
-                            if (routeMapDiv) {
-                                routeMapDiv.innerHTML = `<iframe src="${mapSrc}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
-                            }
-                        }, 2000); // Simulate a delay for getting the "estimated" time
-
+                        if (routeMapDiv) {
+                            routeMapDiv.innerHTML = `<iframe src="${mapSrc}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+                        }
                     },
                     (error) => {
                         routeResultDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error: Unable to get your location. Please check your browser settings.';
