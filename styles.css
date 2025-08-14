@@ -902,4 +902,103 @@ a:hover {
 
 .form-label {
     font-weight: 500;
+
+}
+
+/* =======================================
+   Appointment Modal Styles
+   ======================================= */
+.modal-content {
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+    justify-content: center;
+}
+
+.modal-title {
+    font-weight: 700;
+    color: #007bff;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #495057;
+}
+
+.form-control,
+.form-select {
+    border-radius: 8px;
+    padding: 10px 15px;
+}
+
+.btn-primary {
+    border-radius: 8px;
+}
+
+/* Hospital Card specific styles */
+.hospital-card {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.hospital-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.hospital-card hr {
+    border-top: 2px solid #007bff;
+    opacity: 1;
+}
+
+.hospital-card p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.hospital-card strong {
+    color: #333;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.dropdown-item.book-appt-btn {
+    color: #0056b3;
+    background-color: #fff;
+    border-radius: 0px;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dropdown-item.book-appt-btn:hover {
+    background-color: #0056b3;
+    color: #fff;
+    transform: translateY(-2px);
 }
