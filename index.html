@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<!-- Navbar -->
+<!--Navbar Section-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow">
     <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" href="#">
@@ -41,6 +41,8 @@
                         <li><a class="dropdown-item" href="departments.html#cardiology">Cardiology</a></li>
                         <li><a class="dropdown-item" href="departments.html#pediatrics">Pediatrics</a></li>
                         <li><a class="dropdown-item" href="departments.html#neurology">Neurology</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item book-appt-btn" href="#" data-bs-toggle="modal" data-bs-target="#appointmentModal">Book an Appointment</a></li>
                     </ul>
                 </li>
                 <li class="nav-item d-lg-none">
@@ -323,7 +325,6 @@
     </div>
 </section>
 
-<!-- Contact Section -->
 <section id="contact" class="container py-5">
     <div class="row">
         <div class="col-md-5 mb-4 mb-md-0">
@@ -344,6 +345,8 @@
                     <i class="fas fa-phone-alt text-primary me-2"></i>
                     <a href="tel:+2348034494096" class="text-decoration-none text-dark">(+234) 8034494096</a>
                 </p>
+                
+                <a href="#" class="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#appointmentModal">Book an Appointment</a>
 
                 <div class="mt-5">
                     <h3 class="mb-3">Follow Us</h3>
@@ -405,6 +408,7 @@
         </div>
     </section>
 
+<!--Footer Section-->
    <footer id="main-footer" class="text-white py-5">
     <div class="container">
         <div class="row">
@@ -485,6 +489,8 @@
                 </ul>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
+            <!--Emergency Modal-->
             <div class="modal-body">
                 <div class="tab-content" id="emergencyTabContent">
                     <div class="tab-pane fade show active" id="numbers" role="tabpanel" aria-labelledby="numbers-tab">
@@ -526,9 +532,79 @@
             </div>
         </div>
     </div>
-</div>    
+</div>
+
+<!--Book An Appointment Modal-->
+<div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="appointmentModalLabel">Book Your Appointment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="appointment-form-view">
+                    <form id="appointmentForm">
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="fullName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="emailAddress" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="emailAddress" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phoneNumber" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phoneNumber" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="department" class="form-label">Department</label>
+                            <select class="form-select" id="department" required>
+                                <option selected disabled value="">Choose...</option>
+                                <option>Emergency Care</option>
+                                <option>General Practice</option>
+                                <option>Maternal & Child Health</option>
+                                <option>Radiology</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="appointmentDate" class="form-label">Preferred Date</label>
+                            <input type="date" class="form-control" id="appointmentDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="messageText" class="form-label">Message (optional)</label>
+                            <textarea class="form-control" id="messageText" rows="3"></textarea>
+                        </div>
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary">Book Now</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="hospital-card-view" class="d-none">
+                    <div class="card p-4 text-center hospital-card">
+                        <div class="hospital-card-header mb-3">
+                            <img src="images/logo.png" alt="Care and Cure Logo" width="50" class="me-2">
+                            <h4 class="mb-0">Hospital Card</h4>
+                        </div>
+                        <p><strong>Appointment booked successfully!</strong></p>
+                        <p class="mb-0">Your temporary hospital card is ready.</p>
+                        <hr>
+                        <div class="text-start">
+                            <p><strong>Name:</strong> <span id="cardName"></span></p>
+                            <p><strong>Card Number:</strong> <span id="cardNumber"></span></p>
+                            <p><strong>Appointment Date:</strong> <span id="cardDate"></span></p>
+                        </div>
+                        <div class="d-grid mt-4">
+                            <button id="payForCardBtn" class="btn btn-success">Pay for Hospital Card</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
 </body>
 
 </html>
-
-
