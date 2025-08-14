@@ -180,28 +180,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
-                        const userLat = position.coords.latitude;
-                        const userLng = position.coords.longitude;
-                        const userLocation = `${userLat},${userLng}`;
-                        
-                        // Use the Maps Embed API URL. This URL is not subject to CORS.
-                        // It will load the map directly in the iframe.
-                        const mapSrc = `https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=${userLocation}&destination=${encodeURIComponent(hospitalDestination)}&mode=driving`;
-                        
-                        // The Embed API doesn't provide travel time, so we will display a
-                        // simulated time while the map loads. The user will see the actual
-                        // live time on the map itself once it loads.
-                        setTimeout(() => {
-                            const travelTime = Math.floor(Math.random() * 20) + 5;
-                            routeResultDiv.innerHTML = `<i class="fas fa-car-side"></i> Estimated travel time: <strong>${travelTime} minutes</strong>`;
-                            routeResultDiv.classList.add('alert-success');
-                            routeResultDiv.classList.remove('alert-info');
+                        const userLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-                            if (routeMapDiv) {
-                                routeMapDiv.innerHTML = `<iframe src="${mapSrc}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+                        // Use the Distance Matrix Service to get the real distance and time
+                        const service = new google.maps.DistanceMatrixService();
+                        service.getDistanceMatrix(
+                            {
+                                origins: [userLocation],
+                                destinations: [hospitalDestination],
+                                travelMode: google.maps.TravelMode.DRIVING,
+                                unitSystem: google.maps.UnitSystem.METRIC,
+                                avoidHighways: false,
+                                avoidTolls: false,
+                            },
+                            (response, status) => {
+                                if (status === 'OK') {
+                                    const element = response.rows[0].elements[0];
+                                    if (element.status === 'OK') {
+                                        const distance = element.distance.text;
+                                        const duration = element.duration.text;
+                                        
+                                        routeResultDiv.innerHTML = `<i class="fas fa-car-side"></i> Estimated travel time: <strong>${duration}</strong> (${distance})`;
+                                        routeResultDiv.classList.add('alert-success');
+                                        routeResultDiv.classList.remove('alert-info');
+
+                                        // Use the Maps Embed URL to display the route
+                                        const mapSrc = `https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=${userLocation.lat()},${userLocation.lng()}&destination=${encodeURIComponent(hospitalDestination)}&mode=driving`;
+                                        
+                                        if (routeMapDiv) {
+                                            routeMapDiv.innerHTML = `<iframe src="${mapSrc}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>`;
+                                        }
+                                    } else {
+                                        routeResultDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error: No route found.';
+                                        routeResultDiv.classList.add('alert-warning');
+                                        routeResultDiv.classList.remove('alert-info');
+                                    }
+                                } else {
+                                    routeResultDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error: Directions service failed.';
+                                    routeResultDiv.classList.add('alert-warning');
+                                    routeResultDiv.classList.remove('alert-info');
+                                }
                             }
-                        }, 2000); // Simulate a delay for getting the "estimated" time
-
+                        );
                     },
                     (error) => {
                         routeResultDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error: Unable to get your location. Please check your browser settings.';
