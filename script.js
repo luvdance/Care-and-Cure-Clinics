@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const hospitalDestination = 'Mile 1, Port Harcourt, around Emenike, Mile One Flyover';
-    const apiKey = 'AIzaSyDtXupr2Oeq1NiTpe-ecQhCgZHuqH4Klwg';
+    const apiKey = 'YOUR_API_KEY'; // Replace with your actual Google Maps API key
 
     // New reset function to clear the route and map
     function resetRoute() {
@@ -184,21 +184,36 @@ document.addEventListener('DOMContentLoaded', function() {
                         const userLng = position.coords.longitude;
                         const userLocation = `${userLat},${userLng}`;
 
-                        // We can use a Maps Embed URL to show the route.
-                        const mapSrc = `https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=${userLocation}&destination=${encodeURIComponent(hospitalDestination)}&mode=driving`;
-                        
-                        // This is a simulated travel time as the Embed API doesn't provide it
-                        setTimeout(() => {
-                            const travelTime = Math.floor(Math.random() * 20) + 5;
-                            routeResultDiv.innerHTML = `<i class="fas fa-car-side"></i> Estimated travel time: <strong>${travelTime} minutes</strong>`;
-                            routeResultDiv.classList.add('alert-success');
-                            routeResultDiv.classList.remove('alert-info');
+                        // Fetch directions from Google Maps API
+                        fetch(`https://www.google.com/maps/embed/v1/directions?key=YOUR\_API\_KEY\&origin=${userLocation}&destination=${encodeURIComponent(hospitalDestination)}&key=${apiKey}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.status === 'OK' && data.routes.length > 0) {
+                                    const route = data.routes[0];
+                                    const leg = route.legs[0];
+                                    const travelDuration = leg.duration.text;
 
-                            if (routeMapDiv) {
-                                routeMapDiv.innerHTML = `<iframe src="${mapSrc}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>`;
-                            }
-                        }, 2000);
+                                    routeResultDiv.innerHTML = `<i class="fas fa-car-side"></i> Estimated travel time: <strong>${travelDuration}</strong>`;
+                                    routeResultDiv.classList.add('alert-success');
+                                    routeResultDiv.classList.remove('alert-info');
 
+                                    // Create a Maps Embed URL to display the route
+                                    const mapSrc = `https://www.google.com/search?q=https://www.google.com/maps/embed/v1/directions%3Fkey%3DYOUR_API_KEY%26origin%3D%24{apiKey}&origin=${userLocation}&destination=${encodeURIComponent(hospitalDestination)}`;
+                                    if (routeMapDiv) {
+                                        routeMapDiv.innerHTML = `<iframe src="${mapSrc}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>`;
+                                    }
+                                } else {
+                                    routeResultDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error: Unable to calculate route. Please try again.';
+                                    routeResultDiv.classList.remove('d-none', 'alert-success', 'alert-info');
+                                    routeResultDiv.classList.add('alert-warning');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error fetching directions:', error);
+                                routeResultDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error: Failed to connect to the directions service.';
+                                routeResultDiv.classList.remove('d-none', 'alert-success', 'alert-info');
+                                routeResultDiv.classList.add('alert-warning');
+                            });
                     },
                     (error) => {
                         routeResultDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error: Unable to get your location. Please check your browser settings.';
