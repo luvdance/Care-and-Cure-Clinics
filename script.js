@@ -183,20 +183,43 @@ document.addEventListener('DOMContentLoaded', function() {
                         const userLat = position.coords.latitude;
                         const userLng = position.coords.longitude;
                         const userLocation = `${userLat},${userLng}`;
-                        
-                        // Use the Maps Embed API URL. This URL is not subject to CORS.
-                        // It will load the map directly in the iframe.
-                        const mapSrc = `https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=${userLocation}&destination=${encodeURIComponent(hospitalDestination)}&mode=driving`;
-                        
-                        // Now, we will simply display a message to the user and load the map.
-                        // The user will find the actual time and distance on the map itself.
-                        routeResultDiv.innerHTML = `<i class="fas fa-car-side"></i> Your route and estimated travel time are shown on the map below.`;
-                        routeResultDiv.classList.add('alert-success');
-                        routeResultDiv.classList.remove('alert-info');
 
-                        if (routeMapDiv) {
-                            routeMapDiv.innerHTML = `<iframe src="${mapSrc}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
-                        }
+                        // The Maps Embed API URL returns HTML, not JSON, which caused the SyntaxError.
+                        // We need to use the Directions API to get the travel time data in JSON format.
+                        fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${userLocation}&destination=${encodeURIComponent(hospitalDestination)}&key=${apiKey}`)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                if (data.status === 'OK' && data.routes.length > 0) {
+                                    const route = data.routes[0];
+                                    const leg = route.legs[0];
+                                    const travelDuration = leg.duration.text;
+
+                                    routeResultDiv.innerHTML = `<i class="fas fa-car-side"></i> Estimated travel time: <strong>${travelDuration}</strong>`;
+                                    routeResultDiv.classList.add('alert-success');
+                                    routeResultDiv.classList.remove('alert-info');
+
+                                    // Use the correct Maps Embed URL to display the route
+                                    const mapSrc = `https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=${userLocation}&destination=${encodeURIComponent(hospitalDestination)}`;
+                                    if (routeMapDiv) {
+                                        routeMapDiv.innerHTML = `<iframe src="${mapSrc}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>`;
+                                    }
+                                } else {
+                                    routeResultDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error: Unable to calculate route. Please try again.';
+                                    routeResultDiv.classList.remove('d-none', 'alert-success', 'alert-info');
+                                    routeResultDiv.classList.add('alert-warning');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error fetching directions:', error);
+                                routeResultDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error: Failed to connect to the directions service.';
+                                routeResultDiv.classList.remove('d-none', 'alert-success', 'alert-info');
+                                routeResultDiv.classList.add('alert-warning');
+                            });
                     },
                     (error) => {
                         routeResultDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error: Unable to get your location. Please check your browser settings.';
@@ -231,6 +254,69 @@ document.addEventListener('DOMContentLoaded', function() {
                 firstAidResultDiv.classList.remove('d-none', 'alert-warning');
                 firstAidResultDiv.classList.add('alert-info');
             }
+        });
+    }
+});
+
+//Book an Appointment Modal Functionality
+document.addEventListener('DOMContentLoaded', function () {
+    const appointmentForm = document.getElementById('appointmentForm');
+    const appointmentFormView = document.getElementById('appointment-form-view');
+    const hospitalCardView = document.getElementById('hospital-card-view');
+    const cardName = document.getElementById('cardName');
+    const cardNumber = document.getElementById('cardNumber');
+    const cardDate = document.getElementById('cardDate');
+    const payForCardBtn = document.getElementById('payForCardBtn');
+    
+    // Add event listeners to all buttons that should open the modal.
+    // This targets both the hero button and the one in the dropdown.
+    document.querySelectorAll('[data-bs-toggle="modal"][data-bs-target="#appointmentModal"]').forEach(button => {
+        button.addEventListener('click', () => {
+            // Reset the modal to the form view every time it is opened
+            appointmentFormView.classList.remove('d-none');
+            hospitalCardView.classList.add('d-none');
+            appointmentForm.reset();
+        });
+    });
+
+    if (appointmentForm) {
+        appointmentForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Simulate generating a unique card number
+            const uniqueNumber = Math.floor(100000 + Math.random() * 900000);
+
+            // Get form values
+            const patientName = document.getElementById('fullName').value;
+            const apptDate = document.getElementById('appointmentDate').value;
+
+            // Populate the hospital card with the submitted data
+            cardName.textContent = patientName;
+            cardNumber.textContent = `CC-APP-${uniqueNumber}`;
+            cardDate.textContent = new Date(apptDate).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            // Hide the form and show the hospital card
+            appointmentFormView.classList.add('d-none');
+            hospitalCardView.classList.remove('d-none');
+        });
+    }
+
+    // Event listener for the Pay for Card button
+    if (payForCardBtn) {
+        payForCardBtn.addEventListener('click', function () {
+            // This is where you will integrate Paystack.
+            // You can use the values from the hospital card to create the payment request.
+            alert('Payment functionality will be linked to Paystack here!');
+            // example of how you might start the Paystack transaction:
+            // initiatePaystackPayment({
+            //     email: document.getElementById('emailAddress').value,
+            //     amount: 500000, // Amount in kobo (e.g., ₦5000)
+            //     ref: cardNumber.textContent
+            // });
         });
     }
 });
