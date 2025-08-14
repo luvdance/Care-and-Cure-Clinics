@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const hospitalDestination = 'Mile 1, Port Harcourt, around Emenike, Mile One Flyover';
-    const apiKey = 'YOUR_API_KEY'; // Replace with your actual Google Maps API key
+    const apiKey = 'AIzaSyDtXupr2Oeq1NiTpe-ecQhCgZHuqH4Klwg';
 
     // New reset function to clear the route and map
     function resetRoute() {
@@ -184,9 +184,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         const userLng = position.coords.longitude;
                         const userLocation = `${userLat},${userLng}`;
 
-                        // Fetch directions from Google Maps API
-                        fetch(`https://www.google.com/maps/embed/v1/directions?key=YOUR\_API\_KEY\&origin=${userLocation}&destination=${encodeURIComponent(hospitalDestination)}&key=${apiKey}`)
-                            .then(response => response.json())
+                        // The Maps Embed API URL returns HTML, not JSON, which caused the SyntaxError.
+                        // We need to use the Directions API to get the travel time data in JSON format.
+                        fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${userLocation}&destination=${encodeURIComponent(hospitalDestination)}&key=${apiKey}`)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                return response.json();
+                            })
                             .then(data => {
                                 if (data.status === 'OK' && data.routes.length > 0) {
                                     const route = data.routes[0];
@@ -197,8 +203,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                     routeResultDiv.classList.add('alert-success');
                                     routeResultDiv.classList.remove('alert-info');
 
-                                    // Create a Maps Embed URL to display the route
-                                    const mapSrc = `https://www.google.com/search?q=https://www.google.com/maps/embed/v1/directions%3Fkey%3DYOUR_API_KEY%26origin%3D%24{apiKey}&origin=${userLocation}&destination=${encodeURIComponent(hospitalDestination)}`;
+                                    // Use the correct Maps Embed URL to display the route
+                                    const mapSrc = `https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=${userLocation}&destination=${encodeURIComponent(hospitalDestination)}`;
                                     if (routeMapDiv) {
                                         routeMapDiv.innerHTML = `<iframe src="${mapSrc}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>`;
                                     }
